@@ -8,6 +8,10 @@ function Calendar({date}) {
     return 29;
   }
 
+  function getForDay(day) {
+    return day === monthDay ? <td className="ui-datepicker-today">{day}</td> : <td>{day}</td>;
+  }
+
   const daysInMonth = [31, getDaysForFeb(), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   const daysWeek = [6, 0, 1, 2, 3, 4, 5];
@@ -15,81 +19,48 @@ function Calendar({date}) {
   const monthFull = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
   const monthForDate = ['ЯНВАРЯ', 'ФЕВРАЛЯ', 'МАРТА', 'АПРЕЛЯ', 'МАЯ', 'ИЮНЯ', 'ИЮЛЯ', 'АВГУСТА', 'СЕНТЯБРЯ', 'ОКТЯБРЯ', 'НОЯБРЯ', 'ДЕКАБРЯ'];
 
-  const weekDayCorrected =  daysWeek[date.getDay()];
+  const year     = date.getFullYear()
   const monthDay = date.getDate();
-  const month = date.getMonth();
+  const month    = date.getMonth();
+  const weekDayCorrected =  daysWeek[date.getDay()];
 
   let firstWeek = new Array(7);
   let secondWeek = new Array(7);
+  let thirdWeek  = new Array(7);
+  let fourthWeek  = new Array(7);
+  let fifthWeek  = new Array(7);
 
-  secondWeek[weekDayCorrected] = <td className="ui-datepicker-today">{monthDay}</td>;
+  const firstMonthDay = daysWeek[new Date(year, month, 1).getDay()];
 
-  let nextDate = monthDay + 1;
+  let nextDate = 1;
+  firstWeek[firstMonthDay] = getForDay(nextDate++);
+
+  let prevDate = daysInMonth[month - 1 >= 0 ? month - 1 : 0];
+  for(let i = firstMonthDay - 1; i >= 0; i--) {
+    firstWeek[i] = <td className="ui-datepicker-other-month">{prevDate--}</td>;
+  }
+
+  for(let i = firstMonthDay + 1; i < 7; i++) {
+    firstWeek[i] = getForDay(nextDate++);
+  }
+
+  for(let i = 0; i < 7; i++) {
+    secondWeek[i] = getForDay(nextDate);
+    thirdWeek[i] = getForDay(nextDate + 7);
+    fourthWeek[i] = getForDay(nextDate + 14);
+    nextDate++;
+  }
+  nextDate+=14;
+
   let fixedDay = false;
-  for (let i = weekDayCorrected + 1; i < 7; i++) {
+  for(let i = 0; i < 7; i++) {
     if (nextDate > daysInMonth[month]) {
       nextDate = 1;
       fixedDay = true;
     }
-    if (fixedDay) {
-      secondWeek[i] = <td className="ui-datepicker-other-month">{nextDate}</td>;
-    } else {
-      secondWeek[i] = <td>{nextDate}</td>;
-    }
+    fifthWeek[i] = fixedDay ? <td className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
     nextDate++;
   }
-
-  nextDate = monthDay - 1;
-  fixedDay = false;
-  for (let i = weekDayCorrected - 1; i >= 0; i--) {
-    if (nextDate < 1) {
-      nextDate = daysInMonth[month - 1 >= 0 ? month - 1 : 0];
-      fixedDay = true;
-    }
-    if (fixedDay) {
-      secondWeek[i] = <td className="ui-datepicker-other-month">{nextDate}</td>;
-    } else {
-      secondWeek[i] = <td>{nextDate}</td>;
-    }
-    nextDate--;
-  }
-
-  let firstWeekPrevDay = monthDay - weekDayCorrected;
-  fixedDay = false;
-  for (let i = 6; i >= 0 ; i--) {
-    firstWeekPrevDay--;
-    if (firstWeekPrevDay < 1) {
-      firstWeekPrevDay = daysInMonth[month - 1 >= 0 ? month - 1 : 0];
-      fixedDay = true;
-    }
-    if (fixedDay) {
-      firstWeek[i] = <td className="ui-datepicker-other-month">{firstWeekPrevDay}</td>;
-    } else {
-      firstWeek[i] = <td>{firstWeekPrevDay}</td>;
-    }
-
-  }
-
-/*
-  for (let i = 0; i < 7; i++) {
-    if (daysWeek[weekDay] === i) {
-      secondWeek.push(<td className="ui-datepicker-today">{monthDay}</td>);
-    } else {
-      secondWeek.push(<td>{monthDay - weekDay - (6 - i)}</td>);
-    }
-  }
-
-  const firstWeekStartDay = monthDay - weekDay - 6 - 1;
-  let firstWeek = [];
-  for (let i = 0; i < 7; i++) {
-    firstWeek.push(<td>{firstWeekStartDay - 6 + i}</td>);
-  }
-*/
-/*
-            <td className="ui-datepicker-other-month">27</td>
-            <td className="ui-datepicker-other-month">28</td>
- */
-
 
   return (
     <div className="ui-datepicker">
@@ -130,10 +101,19 @@ function Calendar({date}) {
         </thead>
         <tbody>
           <tr>
-              {firstWeek}
+            {firstWeek}
           </tr>
           <tr>
-              {secondWeek}
+            {secondWeek}
+          </tr>
+          <tr>
+            {thirdWeek}
+          </tr>
+          <tr>
+            {fourthWeek}
+          </tr>
+          <tr>
+            {fifthWeek}
           </tr>
         </tbody>
       </table>
