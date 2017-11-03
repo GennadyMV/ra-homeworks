@@ -1,4 +1,7 @@
-const now = new Date();
+let now = new Date();
+now.setDate(now.getDate() - 50);
+
+
 
 ReactDOM.render(
   <Calendar date={now} />,
