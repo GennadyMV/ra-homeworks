@@ -8,3 +8,5 @@ function Star() {
     </svg>
   );
 }
+
+export default Star;

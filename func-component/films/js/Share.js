@@ -10,3 +10,5 @@ function Share() {
     </div>
   );
 }
+
+export default Share;

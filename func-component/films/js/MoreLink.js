@@ -10,3 +10,5 @@ function MoreLink() {
     </span>
   );
 }
+
+export default MoreLink;

@@ -10,3 +10,5 @@ function Privew() {
     </div>
   );
 }
+
+export default Privew;

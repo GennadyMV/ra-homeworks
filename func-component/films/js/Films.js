@@ -1,5 +1,7 @@
 'use strict';
 
+import Film from './Film.js';
+
 function Films({list}) {
   const films = list.map(film => <Film key={film.id} info={film} />);
   return (
@@ -8,3 +10,5 @@ function Films({list}) {
     </div>
   );
 }
+
+export default Films;

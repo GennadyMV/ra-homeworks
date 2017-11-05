@@ -1,8 +1,8 @@
 'use strict';
 
-function Response({ from, message }) {
+function Response({ id, from, message }) {
   return (
-    <li className="clearfix">
+    <li key={id} className="clearfix">
       <div className="message-data align-right">
         <span className="message-data-time" >{message.time}</span> &nbsp; &nbsp;
         <span className="message-data-name" >{from.name}</span> <i className="fa fa-circle me"></i>
@@ -13,3 +13,5 @@ function Response({ from, message }) {
     </li>
   );
 }
+
+export default Response;

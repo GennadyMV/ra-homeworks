@@ -1,5 +1,7 @@
 'use strict';
 
+import MessageHistory from './MessageHistory.js';
+
 function Chat({chats, messages}) {
   const users = chats.map(chat => {
     const status = chat.isOnline ? 'в сети' : `был ${chat.lastSeen}`;
@@ -58,3 +60,5 @@ function Chat({chats, messages}) {
     </div>
   );
 }
+
+export default Chat;

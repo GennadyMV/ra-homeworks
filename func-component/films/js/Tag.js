@@ -5,3 +5,5 @@ function Tag({title, color}) {
     <span className={`card-media-tag card-media-tag-${color}`}>{title}</span>
   );
 }
+
+export default Tag;

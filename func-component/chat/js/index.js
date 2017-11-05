@@ -1,5 +1,11 @@
 'use strict';
 
+import React from 'react';
+import {render} from 'react-dom';
+
+import Chat from './Chat.js';
+
+
 const messages = [{
   id: 'chat-5-1090',
   from: { name: 'Ольга' },

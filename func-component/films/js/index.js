@@ -1,8 +1,13 @@
+import React from 'react';
+import {render} from 'react-dom';
+
+import Films from './Films.js';
+
 const films = [{
   id: 'film-01',
   poster: './i/superman.jpg',
   title: 'Супермен',
-  stars: 4,
+  stars: 0,
   price: 1299,
   type: 'Экшн',
   color: 'orange',
@@ -11,7 +16,7 @@ const films = [{
   id: 'film-02',
   poster: './i/lone-runner.jpg',
   title: 'Одинокий странник',
-  stars: 3,
+  stars: 2,
   price: 899,
   type: 'Вестерн',
   color: 'brown',
@@ -20,7 +25,7 @@ const films = [{
   id: 'film-03',
   poster: './i/batman.jpg',
   title: 'Бэтмэн',
-  stars: 5,
+  stars: 6,
   price: 1499,
   type: 'Экшн',
   color: 'orange',

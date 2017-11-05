@@ -29,6 +29,7 @@ function Calendar({date}) {
   let thirdWeek  = new Array(7);
   let fourthWeek  = new Array(7);
   let fifthWeek  = new Array(7);
+  let sixthWeek  = new Array(7);
 
   const firstMonthDay = daysWeek[new Date(year, month, 1).getDay()];
 
@@ -61,6 +62,17 @@ function Calendar({date}) {
     fifthWeek[i] = fixedDay ? <td className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
     nextDate++;
   }
+
+  for(let i = 0; i < 7; i++) {
+    if (nextDate > daysInMonth[month]) {
+      nextDate = 1;
+      fixedDay = true;
+    }
+    sixthWeek[i] = fixedDay ? <td className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
+    nextDate++;
+  }
+
+
 
   return (
     <div className="ui-datepicker">
@@ -114,6 +126,9 @@ function Calendar({date}) {
           </tr>
           <tr>
             {fifthWeek}
+          </tr>
+          <tr>
+            {sixthWeek}
           </tr>
         </tbody>
       </table>

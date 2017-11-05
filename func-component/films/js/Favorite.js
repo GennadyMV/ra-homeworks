@@ -17,3 +17,5 @@ function Favorite({isChecked}) {
     </div>
   );
 }
+
+export default Favorite;

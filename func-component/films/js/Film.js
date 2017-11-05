@@ -1,5 +1,12 @@
 'use strict';
 
+import Privew from './Privew.js';
+import Tag from './Tag.js';
+import Favorite from './Favorite.js';
+import Share from './Share.js';
+import Stars from './Stars.js';
+import MoreLink from './MoreLink.js';
+
 function Film({info}) {
   return (
     <div className="card u-clearfix">
@@ -29,3 +36,5 @@ function Film({info}) {
     </div>
   );
 }
+
+export default Film;
