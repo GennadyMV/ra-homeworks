@@ -1,3 +1,9 @@
+const daysWeek = [6, 0, 1, 2, 3, 4, 5];
+const daysWeekFull = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+const monthFull = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+const monthForDate = ['ЯНВАРЯ', 'ФЕВРАЛЯ', 'МАРТА', 'АПРЕЛЯ', 'МАЯ', 'ИЮНЯ', 'ИЮЛЯ', 'АВГУСТА', 'СЕНТЯБРЯ', 'ОКТЯБРЯ', 'НОЯБРЯ', 'ДЕКАБРЯ'];
+const shortid = require('shortid');
+
 function Calendar({date}) {
 
   function getDaysForFeb() {
@@ -9,15 +15,10 @@ function Calendar({date}) {
   }
 
   function getForDay(day) {
-    return day === monthDay ? <td className="ui-datepicker-today">{day}</td> : <td>{day}</td>;
+    return day === monthDay ? <td key={shortid.generate()} className="ui-datepicker-today">{day}</td> : <td key={shortid.generate()}>{day}</td>;
   }
 
   const daysInMonth = [31, getDaysForFeb(), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-  const daysWeek = [6, 0, 1, 2, 3, 4, 5];
-  const daysWeekFull = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
-  const monthFull = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-  const monthForDate = ['ЯНВАРЯ', 'ФЕВРАЛЯ', 'МАРТА', 'АПРЕЛЯ', 'МАЯ', 'ИЮНЯ', 'ИЮЛЯ', 'АВГУСТА', 'СЕНТЯБРЯ', 'ОКТЯБРЯ', 'НОЯБРЯ', 'ДЕКАБРЯ'];
 
   const year     = date.getFullYear()
   const monthDay = date.getDate();
@@ -38,7 +39,7 @@ function Calendar({date}) {
 
   let prevDate = daysInMonth[month - 1 >= 0 ? month - 1 : 0];
   for(let i = firstMonthDay - 1; i >= 0; i--) {
-    firstWeek[i] = <td className="ui-datepicker-other-month">{prevDate--}</td>;
+    firstWeek[i] = <td key={shortid.generate()} className="ui-datepicker-other-month">{prevDate--}</td>;
   }
 
   for(let i = firstMonthDay + 1; i < 7; i++) {
@@ -59,7 +60,7 @@ function Calendar({date}) {
       nextDate = 1;
       fixedDay = true;
     }
-    fifthWeek[i] = fixedDay ? <td className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
+    fifthWeek[i] = fixedDay ? <td key={shortid.generate()} className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
     nextDate++;
   }
 
@@ -68,7 +69,7 @@ function Calendar({date}) {
       nextDate = 1;
       fixedDay = true;
     }
-    sixthWeek[i] = fixedDay ? <td className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
+    sixthWeek[i] = fixedDay ? <td key={shortid.generate()} className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
     nextDate++;
   }
 
@@ -136,3 +137,5 @@ function Calendar({date}) {
   );
 
 }
+
+export default Calendar;

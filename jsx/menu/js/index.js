@@ -1,3 +1,6 @@
+import React from 'react';
+import Menu from './Menu.js';
+
 const items = [
   { title: 'Главная страница', href: '#home' },
   { title: 'О компании', href: '#about' },

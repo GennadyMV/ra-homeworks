@@ -1,6 +1,8 @@
 function Menu({items,opened}) {
 
-  const itemsForUl = items.map((item, index) => <li key={index}><a href={item.href}>{item.title}</a></li>);
+  const shortid = require('shortid');
+
+  const itemsForUl = items.map((item, index) => <li key={shortid.generate()}><a href={item.href}>{item.title}</a></li>);
   return (
     <div className={opened ? 'menu menu-open' : 'menu'}>
       <div className="menu-toggle"><span></span></div>
@@ -15,3 +17,4 @@ function Menu({items,opened}) {
   );
 }
 
+export default Menu;
