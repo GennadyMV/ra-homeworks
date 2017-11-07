@@ -1,8 +1,8 @@
 'use strict';
 
 const HexInput = props => {
-  function onChange() {
-    props.onChange(this.value);
+  function onChange(event) {
+    props.onChange(event.currentTarget.value);
   }
 
   return (
@@ -14,3 +14,5 @@ const HexInput = props => {
       placeholder="#000000" />
   );
 };
+
+export default HexInput;

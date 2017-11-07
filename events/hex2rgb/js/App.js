@@ -1,5 +1,8 @@
 'use strict';
 
+import React from 'react';
+import HexInput from './HexInput.js';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -64,3 +67,8 @@ class App extends React.Component {
     );
   }
 }
+
+ReactDOM.render(
+  <App color="#34495e" />,
+  document.getElementById('root')
+);

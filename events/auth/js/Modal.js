@@ -21,3 +21,5 @@ const ModalResult = props => {
     </div>
   );
 };
+
+export {Modal, ModalResult};

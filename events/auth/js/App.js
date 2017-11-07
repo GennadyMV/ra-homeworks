@@ -1,5 +1,8 @@
 'use strict';
 
+import {Modal, ModalResult} from "./Modal.js"
+import AuthForm from "./AuthForm"
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -37,3 +40,10 @@ class App extends React.Component {
     );
   }
 }
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+
+export default App;
