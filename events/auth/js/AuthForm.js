@@ -4,12 +4,10 @@ const isFunction = input => typeof input === 'function';
 
 function AuthForm({onAuth}) {
 
-  function onClick(event) {
+  function onSubmit(event) {
     event.preventDefault();
-    if (onAuth !== undefined && onAuth !== null) {
-      if (isFunction(onAuth)) {
-        onAuth({name: name, email: email, password: password});
-      }
+    if (isFunction(onAuth)) {
+      onAuth({name: name, email: email, password: password});
     }
   }
 
@@ -38,9 +36,9 @@ function AuthForm({onAuth}) {
   }
 
   return (
-    <form className="ModalForm" action="/404/auth/" method="POST">
+    <form className="ModalForm" action="/404/auth/" method="POST" onSubmit={onSubmit}>
       <div className="Input">
-        <input required type="text" placeholder="Имя" onChange={getName} />
+        <input required id="name" type="text" placeholder="Имя" onChange={getName} />
           <label/>
       </div>
       <div className="Input">
@@ -48,10 +46,10 @@ function AuthForm({onAuth}) {
           <label/>
       </div>
       <div className="Input">
-        <input required type="password" placeholder="Пароль" onKeyDown={getPassword} />
+        <input required id="password" type="password" placeholder="Пароль" onKeyDown={getPassword} />
           <label/>
       </div>
-      <button type="submit" onClick={onClick}>
+      <button type="submit" onClick={onSubmit}>
         <span>Войти</span>
         <i className="fa fa-fw fa-chevron-right"/>
       </button>

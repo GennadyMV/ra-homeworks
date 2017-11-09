@@ -7,6 +7,9 @@ const SALUTATION_MIS = "Мис";
 const SNACKES_PIZZA = "пиццу";
 const SNACKES_CAKE = "пирог";
 
+const isFunction = input => typeof input === 'function';
+const isIncludes = (array, value) => array !== undefined && array !== null && array.includes(value);
+
 function FeedbackForm({data, onSubmit}) {
 
   let form;
@@ -30,7 +33,12 @@ function FeedbackForm({data, onSubmit}) {
       formSubmitted.snacks.push(checkedObjs[idx].value);
     }
     const result = JSON.stringify(formSubmitted);
-    onSubmit(result);
+
+    if (isFunction(onSubmit)) {
+      onSubmit(result);
+    } else {
+      console.log("Error. onSubmit is not a function");
+    }
   }
 
   return(
@@ -76,10 +84,10 @@ function FeedbackForm({data, onSubmit}) {
       <div className="contact-form__input-group">
         <p className="contact-form__label--checkbox-group">Хочу получить:</p>
         <input className="contact-form__input contact-form__input--checkbox" id="snacks-pizza" name="snacks"
-               type="checkbox" value={SNACKES_PIZZA} defaultChecked={data.snacks !== undefined && data.snacks !== null && data.snacks.includes(SNACKES_PIZZA)}/>
+               type="checkbox" value={SNACKES_PIZZA} defaultChecked={isIncludes(data.snacks,SNACKES_PIZZA)}/>
         <label className="contact-form__label contact-form__label--checkbox" htmlFor="snacks-pizza">{SNACKES_PIZZA}</label>
         <input className="contact-form__input contact-form__input--checkbox" id="snacks-cake" name="snacks"
-               type="checkbox" value={SNACKES_CAKE} defaultChecked={data.snacks !== undefined && data.snacks !== null && data.snacks.includes(SNACKES_CAKE)}/>
+               type="checkbox" value={SNACKES_CAKE} defaultChecked={isIncludes(data.snacks,SNACKES_CAKE)}/>
         <label className="contact-form__label contact-form__label--checkbox" htmlFor="snacks-cake">{SNACKES_CAKE}</label>
       </div>
       <button className="contact-form__button" type="submit" onClick={onSubmitInt}>Отправить сообщение!</button>
