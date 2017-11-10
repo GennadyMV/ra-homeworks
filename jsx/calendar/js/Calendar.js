@@ -54,26 +54,28 @@ function Calendar({date}) {
   }
   nextDate+=14;
 
-  let fixedDay = false;
-  for(let i = 0; i < 7; i++) {
-    if (nextDate > daysInMonth[month]) {
-      nextDate = 1;
-      fixedDay = true;
+  if (nextDate <= daysInMonth[month]) {
+    let fixedDay = false;
+    for(let i = 0; i < 7; i++) {
+      if (nextDate > daysInMonth[month]) {
+        nextDate = 1;
+        fixedDay = true;
+      }
+      fifthWeek[i] = fixedDay ? <td key={shortid.generate()} className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
+      nextDate++;
     }
-    fifthWeek[i] = fixedDay ? <td key={shortid.generate()} className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
-    nextDate++;
-  }
 
-  for(let i = 0; i < 7; i++) {
-    if (nextDate > daysInMonth[month]) {
-      nextDate = 1;
-      fixedDay = true;
+    if (!fixedDay) {
+      for(let i = 0; i < 7; i++) {
+        if (nextDate > daysInMonth[month]) {
+          nextDate = 1;
+          fixedDay = true;
+        }
+        sixthWeek[i] = fixedDay ? <td key={shortid.generate()} className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
+        nextDate++;
+      }
     }
-    sixthWeek[i] = fixedDay ? <td key={shortid.generate()} className="ui-datepicker-other-month">{nextDate}</td> : getForDay(nextDate);
-    nextDate++;
   }
-
-
 
   return (
     <div className="ui-datepicker">
