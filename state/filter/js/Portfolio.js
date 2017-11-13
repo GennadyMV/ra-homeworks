@@ -26,3 +26,5 @@ const Portfolio = (props) => {
     </div>
   );
 };
+
+export default Portfolio;

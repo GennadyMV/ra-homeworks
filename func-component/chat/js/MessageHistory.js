@@ -25,9 +25,10 @@ function MessageHistory({list}) {
         break;
       default:
         console.log("Error. Unknown message type:" + msg.type);
+        return null;
     }
 
-    return <ChatMsg id={msg.id} from={msg.from} message={{time: msg.time, text: msg.text}} />
+    return <ChatMsg key={msg.id} message={msg} />
   });
 
   return (

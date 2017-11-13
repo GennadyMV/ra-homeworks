@@ -1,31 +1,31 @@
+function getPrice(itm) {
+  switch(itm.currency_code) {
+    case 'USD':
+      return '$' + itm.price;
+    case 'EUR':
+      return '€' + itm.price;
+    default:
+      return itm.price + ' ' + itm.currency_code;
+  }
+}
+
+
+function getlevelClass(quantity) {
+  const baseClass = 'item-quantity ';
+  if (quantity <= 10) {
+    return baseClass + 'level-low';
+  }
+  if (quantity <= 20) {
+    return baseClass + 'level-medium';
+  }
+  return baseClass + 'level-high';
+}
+
+
 function Listing({items}) {
 
   if (items === null || items.length === 0) {
     return null;
-  }
-
-  function getPrice(itm) {
-    switch(itm.currency_code) {
-      case 'USD':
-        return '$' + itm.price;
-      case 'EUR':
-        return '€' + itm.price;
-      default:
-        return itm.price + ' ' + itm.currency_code;
-    }
-  }
-
-  function getlevelClass(quantity) {
-    const baseClass = 'item-quantity ';
-    if (quantity <= 10) {
-      return baseClass + 'level-low';
-    }
-    if (quantity <= 20) {
-      return baseClass + 'level-medium';
-    }
-    if (quantity > 20) {
-      return baseClass + 'level-level-high';
-    }
   }
 
   const itemsList = items.map(it =>

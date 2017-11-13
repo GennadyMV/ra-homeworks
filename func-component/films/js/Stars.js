@@ -8,10 +8,9 @@ function Stars({count}) {
     return null;
   }
 
-  const shortid = require('shortid');
   let starsList = new Array(count);
   for (let idx = 0; idx < count; idx++) {
-    starsList.push(<li key={shortid.generate()}><Star /></li>)
+    starsList.push(<li key={idx}><Star /></li>)
   }
 
   return(
