@@ -40,7 +40,7 @@ function Calendar({date}) {
   let nextDate = 1;
   firstWeek[firstMonthDay] = getForDay(nextDate++);
 
-  const prevMonth = month - 1 >= 0 ? month - 1 : 0;
+  const prevMonth = month - 1 >= 0 ? month - 1 : 11;
   let prevDate = daysInMonth[prevMonth];
   for(let i = firstMonthDay - 1; i >= 0; i--) {
     firstWeek[i] = <td key={keyGen(prevMonth, prevDate)} className="ui-datepicker-other-month">{prevDate--}</td>;
@@ -69,7 +69,7 @@ function Calendar({date}) {
       nextDate++;
     }
 
-    if (!fixedDay) {
+    if (!fixedDay && nextDate <= daysInMonth[month]) {
       for(let i = 0; i < 7; i++) {
         if (nextDate > daysInMonth[month]) {
           nextDate = 1;
