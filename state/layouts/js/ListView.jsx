@@ -19,3 +19,5 @@ const ListView = props => {
     </ul>
   );
 };
+
+export default ListView;

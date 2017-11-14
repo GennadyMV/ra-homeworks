@@ -1,5 +1,7 @@
 'use strict';
 
+import Button from "./Button.jsx"
+
 const ShopItem = props => {
   let { title, caption, img, price } = props;
   return (
@@ -20,3 +22,5 @@ const ShopItem = props => {
     </div>
   );
 };
+
+export default ShopItem;

@@ -1,7 +1,7 @@
 'use strict'
 
-import Portfolio from "./Portfolio.js"
-import Toolbar from "./Toolbar.js"
+import Portfolio from "./Portfolio.jsx"
+import Toolbar from "./Toolbar.jsx"
 
 const FILTER_ALL = "All";
 
@@ -70,11 +70,11 @@ const projects = [{
       this.setState({
         selectedFilter: filter
       });
-    };
+    }
 
     getFilteredProjects() {
       return this.state.selectedFilter === FILTER_ALL ?
-        this.props.projects:
+        this.props.projects :
         this.props.projects.filter(prj => prj.category === this.state.selectedFilter);
     }
 

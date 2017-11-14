@@ -8,3 +8,5 @@ const Icon = props => {
     </i>
   );
 };
+
+export default Icon;

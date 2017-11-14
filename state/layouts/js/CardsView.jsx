@@ -24,3 +24,5 @@ const CardsView = (props) => {
     </div>
   );
 };
+
+export default CardsView;

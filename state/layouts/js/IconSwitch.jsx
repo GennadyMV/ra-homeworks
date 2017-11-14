@@ -1,5 +1,7 @@
 'use strict';
 
+import Icon from "./Icon.jsx"
+
 const IconSwitch = props => {
   const {icon, onSwitch} = props;
   return (
@@ -8,3 +10,5 @@ const IconSwitch = props => {
     </div>
   );
 };
+
+export default IconSwitch;

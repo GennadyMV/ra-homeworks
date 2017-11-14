@@ -1,5 +1,7 @@
 'use strict';
 
+import Button from "./Button.jsx"
+
 const ShopCard = props => {
   const { title, caption, img, price } = props;
 
@@ -24,3 +26,5 @@ const ShopCard = props => {
     </div>
   );
 };
+
+export default ShopCard;
