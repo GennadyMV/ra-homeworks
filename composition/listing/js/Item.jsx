@@ -11,3 +11,5 @@ const Item = ({color, item}) => (
     </figcaption>
   </figure>
 );
+
+export default Item;

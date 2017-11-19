@@ -1,0 +1,127 @@
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/*!*************************************!*\
+  !*** ./composition/chart/js/App.js ***!
+  \*************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _Legend = __webpack_require__(/*! ./Legend.jsx */ 1);\n\nvar _Legend2 = _interopRequireDefault(_Legend);\n\nvar _Charts = __webpack_require__(/*! ./Charts.jsx */ 2);\n\nvar _Charts2 = _interopRequireDefault(_Charts);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nfunction getRandomInt(min, max) {\n  return Math.floor(Math.random() * (max - min)) + min;\n}\n\nvar series = ['France', 'Italy', 'England', 'Sweden', 'Germany'];\nvar labels = ['cats', 'dogs', 'horses', 'ducks', 'cows'];\nvar colors = ['#43A19E', '#7B43A1', '#F2317A', '#FF9824', '#58CF6C'];\n\nvar App = function (_React$Component) {\n  _inherits(App, _React$Component);\n\n  function App() {\n    _classCallCheck(this, App);\n\n    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));\n  }\n\n  _createClass(App, [{\n    key: \"componentWillMount\",\n    value: function componentWillMount() {\n      this.setState({\n        data: [],\n        series: this.props.series,\n        labels: this.props.labels,\n        colors: this.props.colors\n      });\n    }\n  }, {\n    key: \"componentDidMount\",\n    value: function componentDidMount() {\n      this.populateArray();\n      setInterval(this.populateArray.bind(this), 2000);\n    }\n  }, {\n    key: \"populateArray\",\n    value: function populateArray() {\n      var series = 5;\n      var serieLength = 5;\n\n      var data = new Array(series).fill(new Array(serieLength).fill(0));\n      data = data.map(function (serie) {\n        return serie.map(function (item) {\n          return getRandomInt(0, 20);\n        });\n      });\n\n      this.setState({ data: data });\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      var _state = this.state,\n          data = _state.data,\n          colors = _state.colors,\n          labels = _state.labels,\n          series = _state.series;\n\n      var max = data.reduce(function (max, serie) {\n        return Math.max(max, serie.reduce(function (serieMax, item) {\n          return Math.max(serieMax, item);\n        }, 0));\n      }, 0);\n\n      return React.createElement(\n        \"section\",\n        null,\n        React.createElement(_Charts2.default, {\n          data: data,\n          lableArray: labels,\n          max: max,\n          colors: colors,\n          height: \"250\",\n          heightFunc: function heightFunc(item) {\n            return item / max * 100 + '%';\n          }\n        }),\n        React.createElement(_Charts2.default, {\n          chartsSerieStyle: \"stacked\",\n          data: data,\n          lableArray: labels,\n          max: max,\n          colors: colors,\n          height: \"250\",\n          heightFunc: function heightFunc(item, sum) {\n            return item / sum * 100 + '%';\n          }\n        }),\n        React.createElement(_Charts2.default, {\n          chartsSerieStyle: \"layered\",\n          data: data,\n          lableArray: labels,\n          max: max,\n          colors: colors,\n          height: \"250\",\n          heightFunc: function heightFunc(item) {\n            return item / max * 100 + '%';\n          },\n          rightFunc: function rightFunc(item, sortedSerie, serie) {\n            return sortedSerie.indexOf(item) / (serie.length + 1) * 100 + '%';\n          }\n        }),\n        React.createElement(_Charts2.default, {\n          chartStyle: \"horizontal\",\n          data: data,\n          lableArray: series,\n          max: max,\n          colors: colors,\n          height: \"auto\",\n          widthFunc: function widthFunc(item) {\n            return item / max * 100 + '%';\n          }\n        }),\n        React.createElement(_Legend2.default, { labels: labels, colors: colors })\n      );\n    }\n  }]);\n\n  return App;\n}(React.Component);\n\nReactDOM.render(React.createElement(App, { series: series, labels: labels, colors: colors }), document.getElementById('root'));//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9jb21wb3NpdGlvbi9jaGFydC9qcy9BcHAuanM/MzgwNSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgTGVnZW5kIGZyb20gXCIuL0xlZ2VuZC5qc3hcIlxuaW1wb3J0IENoYXJ0cyBmcm9tIFwiLi9DaGFydHMuanN4XCJcblxuZnVuY3Rpb24gZ2V0UmFuZG9tSW50KG1pbiwgbWF4KSB7XG4gIHJldHVybiBNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkgKiAobWF4IC0gbWluKSkgKyBtaW47XG59XG5cbmNvbnN0IHNlcmllcyA9IFsnRnJhbmNlJywgJ0l0YWx5JywgJ0VuZ2xhbmQnLCAnU3dlZGVuJywgJ0dlcm1hbnknXTtcbmNvbnN0IGxhYmVscyA9IFsnY2F0cycsICdkb2dzJywgJ2hvcnNlcycsICdkdWNrcycsICdjb3dzJ107XG5jb25zdCBjb2xvcnMgPSBbJyM0M0ExOUUnLCAnIzdCNDNBMScsICcjRjIzMTdBJywgJyNGRjk4MjQnLCAnIzU4Q0Y2QyddO1xuXG5jbGFzcyBBcHAgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuXHRjb21wb25lbnRXaWxsTW91bnQoKSB7XG5cdFx0dGhpcy5zZXRTdGF0ZSh7XG5cdFx0XHRkYXRhOiBbXSxcblx0XHRcdHNlcmllczogdGhpcy5wcm9wcy5zZXJpZXMsXG5cdFx0XHRsYWJlbHM6IHRoaXMucHJvcHMubGFiZWxzLFxuXHRcdFx0Y29sb3JzOiB0aGlzLnByb3BzLmNvbG9yc1xuXHRcdH0pXG5cdH1cblxuXHRjb21wb25lbnREaWRNb3VudCgpIHtcblx0XHR0aGlzLnBvcHVsYXRlQXJyYXkoKTtcblx0XHRzZXRJbnRlcnZhbCh0aGlzLnBvcHVsYXRlQXJyYXkuYmluZCh0aGlzKSwgMjAwMCk7XG5cdH1cblxuXHRwb3B1bGF0ZUFycmF5KCkge1xuXHRcdGNvbnN0XHRzZXJpZXMgPSA1O1xuXHRcdGNvbnN0IHNlcmllTGVuZ3RoID0gNTtcblxuICAgIGxldCBkYXRhID0gbmV3IEFycmF5KHNlcmllcykuZmlsbChuZXcgQXJyYXkoc2VyaWVMZW5ndGgpLmZpbGwoMCkpO1xuICAgIGRhdGEgPSBkYXRhLm1hcChzZXJpZSA9PiBzZXJpZS5tYXAoaXRlbSA9PiBnZXRSYW5kb21JbnQoMCwgMjApKSk7XG5cblx0XHR0aGlzLnNldFN0YXRlKHsgZGF0YSB9KTtcblx0fVxuXG5cdHJlbmRlcigpIHtcblx0XHRjb25zdCB7IGRhdGEsIGNvbG9ycywgbGFiZWxzLCBzZXJpZXMgfSA9IHRoaXMuc3RhdGU7XG5cdFx0Y29uc3QgbWF4ID0gZGF0YS5yZWR1Y2UoKG1heCwgc2VyaWUpID0+IE1hdGgubWF4KG1heCwgc2VyaWUucmVkdWNlKChzZXJpZU1heCwgaXRlbSkgPT4gTWF0aC5tYXgoc2VyaWVNYXgsIGl0ZW0pLCAwKSksIDApO1xuXG5cdFx0cmV0dXJuIChcblx0XHRcdDxzZWN0aW9uPlxuICAgICAgICA8Q2hhcnRzXG4gICAgICAgICAgZGF0YT17ZGF0YX1cbiAgICAgICAgICBsYWJsZUFycmF5PXtsYWJlbHN9XG4gICAgICAgICAgbWF4PXttYXh9XG4gICAgICAgICAgY29sb3JzPXtjb2xvcnN9XG4gICAgICAgICAgaGVpZ2h0PScyNTAnXG4gICAgICAgICAgaGVpZ2h0RnVuYz17KGl0ZW0pID0+IGl0ZW0gLyAobWF4KSAqIDEwMCArICclJ31cbiAgICAgICAgLz5cblxuICAgICAgICA8Q2hhcnRzXG4gICAgICAgICAgY2hhcnRzU2VyaWVTdHlsZT0nc3RhY2tlZCdcbiAgICAgICAgICBkYXRhPXtkYXRhfVxuICAgICAgICAgIGxhYmxlQXJyYXk9e2xhYmVsc31cbiAgICAgICAgICBtYXg9e21heH1cbiAgICAgICAgICBjb2xvcnM9e2NvbG9yc31cbiAgICAgICAgICBoZWlnaHQ9JzI1MCdcbiAgICAgICAgICBoZWlnaHRGdW5jPXsoaXRlbSwgc3VtKSA9PiBpdGVtIC8gc3VtICogMTAwICsgJyUnfVxuICAgICAgICAvPlxuXG4gICAgICAgIDxDaGFydHNcbiAgICAgICAgICBjaGFydHNTZXJpZVN0eWxlPSdsYXllcmVkJ1xuICAgICAgICAgIGRhdGE9e2RhdGF9XG4gICAgICAgICAgbGFibGVBcnJheT17bGFiZWxzfVxuICAgICAgICAgIG1heD17bWF4fVxuICAgICAgICAgIGNvbG9ycz17Y29sb3JzfVxuICAgICAgICAgIGhlaWdodD0nMjUwJ1xuICAgICAgICAgIGhlaWdodEZ1bmM9eyhpdGVtKSA9PiBpdGVtIC8gKG1heCkgKiAxMDAgKyAnJSd9XG4gICAgICAgICAgcmlnaHRGdW5jPXsoaXRlbSwgc29ydGVkU2VyaWUsIHNlcmllKSA9PiAoKHNvcnRlZFNlcmllLmluZGV4T2YoaXRlbSkgLyAoc2VyaWUubGVuZ3RoICsgMSkpICogMTAwKSArICclJ31cbiAgICAgICAgLz5cblxuXG4gICAgICAgIDxDaGFydHNcbiAgICAgICAgICBjaGFydFN0eWxlPSdob3Jpem9udGFsJ1xuICAgICAgICAgIGRhdGE9e2RhdGF9XG4gICAgICAgICAgbGFibGVBcnJheT17c2VyaWVzfVxuICAgICAgICAgIG1heD17bWF4fVxuICAgICAgICAgIGNvbG9ycz17Y29sb3JzfVxuICAgICAgICAgIGhlaWdodD0nYXV0bydcbiAgICAgICAgICB3aWR0aEZ1bmM9eyhpdGVtKSA9PiBpdGVtIC8gKG1heCkgKiAxMDAgKyAnJScgfVxuICAgICAgICAvPlxuXG4gICAgICAgIDxMZWdlbmQgbGFiZWxzPXtsYWJlbHN9IGNvbG9ycz17Y29sb3JzfS8+XG5cblx0XHRcdDwvc2VjdGlvbj5cblx0XHQpO1xuXHR9XG59XG5cblxuUmVhY3RET00ucmVuZGVyKDxBcHAgc2VyaWVzPXtzZXJpZXN9IGxhYmVscz17bGFiZWxzfSBjb2xvcnM9e2NvbG9yc30vPiwgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Jvb3QnKSk7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGNvbXBvc2l0aW9uL2NoYXJ0L2pzL0FwcC5qcyJdLCJtYXBwaW5ncyI6Ijs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7Ozs7Ozs7Ozs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOzs7Ozs7Ozs7OztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUpBO0FBTUE7OztBQUVBO0FBQ0E7QUFDQTtBQUNBOzs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFDQTs7O0FBRUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFOQTtBQVNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBUEE7QUFVQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQVJBO0FBWUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFQQTtBQVVBO0FBMUNBO0FBOENBOzs7O0FBNUVBO0FBQ0E7QUErRUEiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///0\n");
+
+/***/ }),
+/* 1 */
+/*!*****************************************!*\
+  !*** ./composition/chart/js/Legend.jsx ***!
+  \*****************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar Legend = function Legend(_ref) {\n  var labels = _ref.labels,\n      colors = _ref.colors;\n\n  return React.createElement(\n    \"div\",\n    { className: \"Legend\" },\n    labels.map(function (label, labelIndex) {\n      return React.createElement(\n        \"div\",\n        null,\n        React.createElement(\"span\", { className: \"Legend--color\", style: { backgroundColor: colors[labelIndex % colors.length] } }),\n        React.createElement(\n          \"span\",\n          { className: \"Legend--label\" },\n          label\n        )\n      );\n    })\n  );\n};\n\nexports.default = Legend;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9jb21wb3NpdGlvbi9jaGFydC9qcy9MZWdlbmQuanN4P2YyMDgiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgTGVnZW5kID0gKHtsYWJlbHMsIGNvbG9yc30pID0+IHtcbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cIkxlZ2VuZFwiPlxuICAgICAge2xhYmVscy5tYXAoKGxhYmVsLCBsYWJlbEluZGV4KSA9PiB7XG4gICAgICAgIHJldHVybiAoXG4gICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cIkxlZ2VuZC0tY29sb3JcIiBzdHlsZT17eyBiYWNrZ3JvdW5kQ29sb3I6IGNvbG9yc1tsYWJlbEluZGV4ICUgY29sb3JzLmxlbmd0aF0gIH19IC8+XG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJMZWdlbmQtLWxhYmVsXCI+eyBsYWJlbCB9PC9zcGFuPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICApO1xuICAgICAgfSkgfVxuICAgIDwvZGl2PlxuICApO1xufTtcblxuZXhwb3J0IGRlZmF1bHQgTGVnZW5kO1xuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBjb21wb3NpdGlvbi9jaGFydC9qcy9MZWdlbmQuanN4Il0sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFGQTtBQUtBO0FBUkE7QUFXQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///1\n");
+
+/***/ }),
+/* 2 */
+/*!*****************************************!*\
+  !*** ./composition/chart/js/Charts.jsx ***!
+  \*****************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _ChartsSerie = __webpack_require__(/*! ./ChartsSerie.jsx */ 3);\n\nvar _ChartsSerie2 = _interopRequireDefault(_ChartsSerie);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction compareNumbers(a, b) {\n  return a - b;\n}\n\nvar Charts = function Charts(_ref) {\n  var chartsSerieStyle = _ref.chartsSerieStyle,\n      chartStyle = _ref.chartStyle,\n      data = _ref.data,\n      lableArray = _ref.lableArray,\n      max = _ref.max,\n      colors = _ref.colors,\n      height = _ref.height,\n      heightFunc = _ref.heightFunc,\n      widthFunc = _ref.widthFunc,\n      rightFunc = _ref.rightFunc;\n\n  var chartClassName = \"Charts \";\n  if (chartStyle) {\n    chartClassName += chartStyle;\n  }\n  return React.createElement(\n    \"div\",\n    { className: chartClassName },\n    data.map(function (serie, serieIndex) {\n      var sum = serie.reduce(function (carry, current) {\n        return carry + current;\n      }, 0);\n      var sortedSerie = serie.slice(0);\n      sortedSerie.sort(compareNumbers);\n\n      return React.createElement(_ChartsSerie2.default, {\n        mainStyle: chartsSerieStyle,\n        max: max,\n        colors: colors,\n        lableArray: lableArray,\n        serie: serie,\n        serieIndex: serieIndex,\n        height: height,\n        heightFunc: heightFunc,\n        widthFunc: widthFunc,\n        sum: sum,\n        rightFunc: rightFunc,\n        sortedSerie: sortedSerie\n      });\n    })\n  );\n};\n\nexports.default = Charts;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMi5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9jb21wb3NpdGlvbi9jaGFydC9qcy9DaGFydHMuanN4PzJhN2IiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IENoYXJ0c1NlcmllIGZyb20gXCIuL0NoYXJ0c1NlcmllLmpzeFwiXG5cbmZ1bmN0aW9uIGNvbXBhcmVOdW1iZXJzKGEsIGIpIHtcbiAgcmV0dXJuIGEgLSBiO1xufVxuXG5jb25zdCBDaGFydHMgPSAoe2NoYXJ0c1NlcmllU3R5bGUsIGNoYXJ0U3R5bGUsIGRhdGEsIGxhYmxlQXJyYXksIG1heCwgY29sb3JzLCBoZWlnaHQsIGhlaWdodEZ1bmMsIHdpZHRoRnVuYywgcmlnaHRGdW5jfSkgPT4ge1xuICBsZXQgY2hhcnRDbGFzc05hbWUgPSBcIkNoYXJ0cyBcIjtcbiAgaWYgKGNoYXJ0U3R5bGUpIHtcbiAgICBjaGFydENsYXNzTmFtZSArPSBjaGFydFN0eWxlO1xuICB9XG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9e2NoYXJ0Q2xhc3NOYW1lfT5cbiAgICAgIHsgZGF0YS5tYXAoKHNlcmllLCBzZXJpZUluZGV4KSA9PiB7XG4gICAgICAgIGNvbnN0IHN1bSA9IHNlcmllLnJlZHVjZSgoY2FycnksIGN1cnJlbnQpID0+IGNhcnJ5ICsgY3VycmVudCwgMCk7XG4gICAgICAgIGNvbnN0IHNvcnRlZFNlcmllID0gc2VyaWUuc2xpY2UoMCk7XG4gICAgICAgIHNvcnRlZFNlcmllLnNvcnQoY29tcGFyZU51bWJlcnMpO1xuXG4gICAgICAgIHJldHVybiAoXG4gICAgICAgICAgPENoYXJ0c1NlcmllXG4gICAgICAgICAgICBtYWluU3R5bGU9e2NoYXJ0c1NlcmllU3R5bGV9XG4gICAgICAgICAgICBtYXg9e21heH1cbiAgICAgICAgICAgIGNvbG9ycz17Y29sb3JzfVxuICAgICAgICAgICAgbGFibGVBcnJheT17bGFibGVBcnJheX1cbiAgICAgICAgICAgIHNlcmllPXtzZXJpZX1cbiAgICAgICAgICAgIHNlcmllSW5kZXg9e3NlcmllSW5kZXh9XG4gICAgICAgICAgICBoZWlnaHQ9e2hlaWdodH1cbiAgICAgICAgICAgIGhlaWdodEZ1bmM9e2hlaWdodEZ1bmN9XG4gICAgICAgICAgICB3aWR0aEZ1bmM9e3dpZHRoRnVuY31cbiAgICAgICAgICAgIHN1bT17c3VtfVxuICAgICAgICAgICAgcmlnaHRGdW5jPXtyaWdodEZ1bmN9XG4gICAgICAgICAgICBzb3J0ZWRTZXJpZT17c29ydGVkU2VyaWV9XG4gICAgICAgICAgLz4pO1xuICAgICAgfSkgfVxuICAgIDwvZGl2PlxuICApO1xuXG59O1xuXG5leHBvcnQgZGVmYXVsdCBDaGFydHM7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGNvbXBvc2l0aW9uL2NoYXJ0L2pzL0NoYXJ0cy5qc3giXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7Ozs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFaQTtBQWNBO0FBckJBO0FBeUJBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///2\n");
+
+/***/ }),
+/* 3 */
+/*!**********************************************!*\
+  !*** ./composition/chart/js/ChartsSerie.jsx ***!
+  \**********************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _ChartItem = __webpack_require__(/*! ./ChartItem.jsx */ 4);\n\nvar _ChartItem2 = _interopRequireDefault(_ChartItem);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar ChartsSerie = function ChartsSerie(_ref) {\n  var mainStyle = _ref.mainStyle,\n      max = _ref.max,\n      colors = _ref.colors,\n      lableArray = _ref.lableArray,\n      serie = _ref.serie,\n      serieIndex = _ref.serieIndex,\n      height = _ref.height,\n      heightFunc = _ref.heightFunc,\n      widthFunc = _ref.widthFunc,\n      rightFunc = _ref.rightFunc,\n      sum = _ref.sum,\n      sortedSerie = _ref.sortedSerie;\n\n  var className = \"Charts--serie \";\n  if (mainStyle) {\n    className += mainStyle;\n  }\n\n  return React.createElement(\n    \"div\",\n    { className: className, key: serieIndex, style: { height: height } },\n    React.createElement(\n      \"label\",\n      null,\n      lableArray[serieIndex]\n    ),\n    serie.map(function (item, itemIndex) {\n      var style = {\n        backgroundColor: colors[itemIndex],\n        opacity: item / max + .05,\n        zIndex: item\n      };\n      var newStyle = Object.assign({}, style);\n\n      if (widthFunc) {\n        newStyle = Object.assign(newStyle, { width: widthFunc(item) });\n      }\n      if (rightFunc) {\n        newStyle = Object.assign(newStyle, { right: rightFunc(item, sortedSerie, serie) });\n      }\n\n      if (heightFunc) {\n        newStyle = Object.assign(newStyle, { height: heightFunc(item, sum) });\n      }\n      return React.createElement(_ChartItem2.default, { mainStyle: mainStyle, style: newStyle, itemIndex: itemIndex, item: item });\n    })\n  );\n};\nexports.default = ChartsSerie;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9jb21wb3NpdGlvbi9jaGFydC9qcy9DaGFydHNTZXJpZS5qc3g/ZjA2MiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgQ2hhcnRJdGVtIGZyb20gXCIuL0NoYXJ0SXRlbS5qc3hcIlxuXG5jb25zdCBDaGFydHNTZXJpZSA9ICh7bWFpblN0eWxlLCBtYXgsIGNvbG9ycywgbGFibGVBcnJheSwgc2VyaWUsIHNlcmllSW5kZXgsIGhlaWdodCxcbiAgICAgICAgICAgICAgICAgICAgICAgaGVpZ2h0RnVuYywgd2lkdGhGdW5jLCByaWdodEZ1bmMsIHN1bSwgc29ydGVkU2VyaWV9KSA9PiB7XG4gIGxldCBjbGFzc05hbWUgPSBcIkNoYXJ0cy0tc2VyaWUgXCI7XG4gIGlmIChtYWluU3R5bGUpIHtcbiAgICBjbGFzc05hbWUgKz0gbWFpblN0eWxlO1xuICB9XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT17Y2xhc3NOYW1lfSBrZXk9eyBzZXJpZUluZGV4IH1cdHN0eWxlPXt7IGhlaWdodDogaGVpZ2h0fX0+XG4gICAgICA8bGFiZWw+eyBsYWJsZUFycmF5W3NlcmllSW5kZXhdIH08L2xhYmVsPlxuICAgICAgeyBzZXJpZS5tYXAoKGl0ZW0sIGl0ZW1JbmRleCkgPT4ge1xuICAgICAgICAgIGNvbnN0IHN0eWxlID0ge1xuICAgICAgICAgICAgYmFja2dyb3VuZENvbG9yOiBjb2xvcnNbaXRlbUluZGV4XSxcbiAgICAgICAgICAgIG9wYWNpdHk6IChpdGVtL21heCArIC4wNSksXG4gICAgICAgICAgICB6SW5kZXg6IGl0ZW1cbiAgICAgICAgICB9O1xuICAgICAgICAgIGxldCBuZXdTdHlsZSA9IE9iamVjdC5hc3NpZ24oe30sIHN0eWxlKTtcblxuICAgICAgICAgIGlmICh3aWR0aEZ1bmMpIHtcbiAgICAgICAgICAgIG5ld1N0eWxlID0gT2JqZWN0LmFzc2lnbihuZXdTdHlsZSwge3dpZHRoOiB3aWR0aEZ1bmMoaXRlbSl9KTtcbiAgICAgICAgICB9XG4gICAgICAgICAgaWYgKHJpZ2h0RnVuYykge1xuICAgICAgICAgICAgbmV3U3R5bGUgPSBPYmplY3QuYXNzaWduKG5ld1N0eWxlLCB7cmlnaHQ6IHJpZ2h0RnVuYyhpdGVtLCBzb3J0ZWRTZXJpZSwgc2VyaWUpfSk7XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgaWYgKGhlaWdodEZ1bmMpIHtcbiAgICAgICAgICAgIG5ld1N0eWxlID0gT2JqZWN0LmFzc2lnbihuZXdTdHlsZSwge2hlaWdodDogaGVpZ2h0RnVuYyhpdGVtLCBzdW0pfSk7XG4gICAgICAgICAgfVxuICAgICAgICAgIHJldHVybiAoPENoYXJ0SXRlbSBtYWluU3R5bGU9e21haW5TdHlsZX0gc3R5bGU9e25ld1N0eWxlfSBpdGVtSW5kZXg9e2l0ZW1JbmRleH0gaXRlbT17aXRlbX0vPik7XG4gICAgICAgIH1cbiAgICAgICl9XG4gICAgPC9kaXY+XG4gICk7XG5cbn07XG5leHBvcnQgZGVmYXVsdCBDaGFydHNTZXJpZTtcblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gY29tcG9zaXRpb24vY2hhcnQvanMvQ2hhcnRzU2VyaWUuanN4Il0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBOzs7OztBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFIQTtBQUtBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFyQkE7QUEwQkE7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///3\n");
+
+/***/ }),
+/* 4 */
+/*!********************************************!*\
+  !*** ./composition/chart/js/ChartItem.jsx ***!
+  \********************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar ChartItem = function ChartItem(_ref) {\n  var mainStyle = _ref.mainStyle,\n      style = _ref.style,\n      itemIndex = _ref.itemIndex,\n      item = _ref.item;\n\n  var className = \"Charts--item \";\n  if (mainStyle) {\n    className += mainStyle;\n  }\n  return React.createElement(\n    \"div\",\n    { className: className, style: style, key: itemIndex },\n    React.createElement(\n      \"b\",\n      { style: { color: style.backgroundColor } },\n      item\n    )\n  );\n};\n\nexports.default = ChartItem;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9jb21wb3NpdGlvbi9jaGFydC9qcy9DaGFydEl0ZW0uanN4P2U1NjkiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgQ2hhcnRJdGVtID0gKHttYWluU3R5bGUsIHN0eWxlLCBpdGVtSW5kZXgsIGl0ZW19KSA9PiB7XG4gIGxldCBjbGFzc05hbWUgPSBcIkNoYXJ0cy0taXRlbSBcIjtcbiAgaWYgKG1haW5TdHlsZSkge1xuICAgIGNsYXNzTmFtZSArPSBtYWluU3R5bGU7XG4gIH1cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT17Y2xhc3NOYW1lfSBzdHlsZT17IHN0eWxlIH0ga2V5PXsgaXRlbUluZGV4IH0+XG4gICAgICA8YiBzdHlsZT17eyBjb2xvcjogc3R5bGUuYmFja2dyb3VuZENvbG9yIH19PnsgaXRlbSB9PC9iPlxuICAgIDwvZGl2PlxuICApO1xufTtcblxuZXhwb3J0IGRlZmF1bHQgQ2hhcnRJdGVtO1xuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGNvbXBvc2l0aW9uL2NoYXJ0L2pzL0NoYXJ0SXRlbS5qc3giXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBREE7QUFJQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///4\n");
+
+/***/ })
+/******/ ]);
