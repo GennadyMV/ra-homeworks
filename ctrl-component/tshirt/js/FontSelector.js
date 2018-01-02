@@ -8,10 +8,10 @@ const FontSelector = ({fonts, selectedFont, onSelect}) => {
         key={font.name}
         type="radio"
         name="font"
-        id="abc1"
+        id={font.name}
         onChange={() => onSelect(font)}
         checked={font === selectedFont}/>
-        <label htmlFor="abc1" className="grid-1">
+        <label htmlFor={font.name} className="grid-1">
           <PictureFont text={text} path={font.path}/>
         </label>
     </div>

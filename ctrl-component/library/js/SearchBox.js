@@ -1,5 +1,4 @@
 const SearchBox = (props) => {
-  let searchValue;
   const id = "filterByValue";
   return (
     <input
@@ -7,8 +6,7 @@ const SearchBox = (props) => {
       type="text"
       placeholder="Поиск по названию или автору"
       value={props.value}
-      ref={field => searchValue = field}
-      onChange={() => props.filterBooks(searchValue.value)}
+      onChange={({target}) => props.filterBooks(target.value)}
       />
   );
 };
